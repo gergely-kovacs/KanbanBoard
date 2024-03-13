@@ -7,7 +7,11 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "changeDetection": "OnPush",
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "skipTests": true,
+          "style": "css"
         }
       },
       "root": "",
@@ -20,17 +24,22 @@
             "outputPath": "dist/kanban-board",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "inlineStyleLanguage": "css",
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+                "inject": false,
+                "bundleName": "dark"
+              },
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+                "inject": false,
+                "bundleName": "light"
+              },
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -79,19 +88,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "inlineStyleLanguage": "css",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }

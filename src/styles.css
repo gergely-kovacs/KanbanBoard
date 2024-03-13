@@ -1,0 +1,22 @@
+@import "drag-and-drop.css";
+
+@tailwind base;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+body.dark {
+  background-color: #303030;
+}
