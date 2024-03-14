@@ -99,6 +99,17 @@ export class KanbanBoardComponent implements OnInit {
   }
 
   async drop(event: CdkDragDrop<Signal<Task[]>>) {
+    if (
+      isNil(event.container.element.nativeElement.dataset['status']) ||
+      !['todo', 'doing', 'done'].includes(
+        event.container.element.nativeElement.dataset['status']
+      )
+    ) {
+      throw new Error(
+        "The task group needs to have a 'data-status' attribute, and it must be one of 'todo', 'doing' or 'done'"
+      );
+    }
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data(),
@@ -115,13 +126,9 @@ export class KanbanBoardComponent implements OnInit {
       event.currentIndex
     );
 
-    // FIXME: treat the dataset as unknown, make sure it errors on wrong values
     const task: Task = {
       ...event.item.data,
-      status: event.container.element.nativeElement.dataset['status'] as
-        | 'todo'
-        | 'doing'
-        | 'done',
+      status: event.container.element.nativeElement.dataset['status'],
     };
     const updatedTask = await this.taskService.updateTask(task);
 
@@ -143,7 +150,7 @@ export class KanbanBoardComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         task,
-      }
+      },
     });
 
     dialogRef.afterClosed().subscribe((isConfirmed: unknown) => {
