@@ -13,7 +13,7 @@ import { Task } from '../../../task';
       <mat-card-header>
         <!-- TODO: Add buttons to change task status, and to delete them -->
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content class="dark:text-gray-50 text-gray-800 font-medium">
         {{ task().description }}
       </mat-card-content>
     </mat-card>
