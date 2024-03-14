@@ -13,7 +13,7 @@ import {
   inject,
 } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { isBoolean, isNil } from 'lodash';
+import { isBoolean, isNil } from 'lodash-es';
 import { Task } from '../task';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { TaskFormComponent } from './task-form/task-form.component';

@@ -8,7 +8,7 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { isNil, isObject } from 'lodash';
+import { isNil, isObject } from 'lodash-es';
 import { Task, isInstanceOfTask } from '../../task';
 
 @Component({

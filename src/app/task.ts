@@ -1,4 +1,4 @@
-import { isNil, isObject } from 'lodash';
+import { isNil, isObject } from 'lodash-es';
 
 export interface Task {
   id: string;

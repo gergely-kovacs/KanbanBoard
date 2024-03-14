@@ -9,7 +9,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { isEmpty, isNil, trim } from 'lodash';
+import { isEmpty, isNil, trim } from 'lodash-es';
 import { Task } from '../../task';
 
 @Component({
