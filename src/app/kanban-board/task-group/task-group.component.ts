@@ -1,5 +1,11 @@
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+  input,
+} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Task } from '../../task';
 import { TaskCardComponent } from './task-card/task-card.component';
@@ -10,6 +16,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
   imports: [MatCardModule, CdkDrag, TaskCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <!-- FIXME: remove annoying tooltip that appears on mouseover -->
     <mat-card>
       <mat-card-header class="{{ headerClass() }}">
         <mat-card-title class="text-gray-50">{{ title() }}</mat-card-title>
@@ -21,6 +28,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
           cdkDrag
           [cdkDragData]="task"
           [task]="task"
+          (taskMoved)="moveTask($event)"
         ></app-task-card>
         }
       </mat-card-content>
@@ -32,4 +40,10 @@ export class TaskGroupComponent {
   headerClass = input.required<string>();
   title = input.required<string>();
   tasks = input.required<Task[]>();
+
+  @Output() taskMoved = new EventEmitter<Task>();
+
+  moveTask(task: Task) {
+    this.taskMoved.emit(task);
+  }
 }

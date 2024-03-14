@@ -26,6 +26,7 @@ import { isNil } from 'lodash';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="grid grid-cols-4 gap-4 m-4">
+      <!-- TODO: adjust classes or remove the 'list' class from each -->
       <app-task-group
         class="list"
         data-status="todo"
@@ -37,6 +38,7 @@ import { isNil } from 'lodash';
         [cdkDropListData]="todo"
         [cdkDropListConnectedTo]="[doingList, doneList]"
         (cdkDropListDropped)="drop($event)"
+        (taskMoved)="taskMoved($event)"
       ></app-task-group>
       <app-task-group
         class="list"
@@ -49,6 +51,7 @@ import { isNil } from 'lodash';
         [cdkDropListData]="doing"
         [cdkDropListConnectedTo]="[todoList, doneList]"
         (cdkDropListDropped)="drop($event)"
+        (taskMoved)="taskMoved($event)"
       ></app-task-group>
       <app-task-group
         class="list"
@@ -61,6 +64,7 @@ import { isNil } from 'lodash';
         [cdkDropListData]="done"
         [cdkDropListConnectedTo]="[todoList, doingList]"
         (cdkDropListDropped)="drop($event)"
+        (taskMoved)="taskMoved($event)"
       ></app-task-group>
       <app-task-form (taskAdded)="taskService.addTask($event)"></app-task-form>
     </div>
@@ -118,5 +122,9 @@ export class KanbanBoardComponent implements OnInit {
         event.previousIndex
       );
     }
+  }
+
+  taskMoved(task: Task) {
+    this.taskService.updateTask(task);
   }
 }
