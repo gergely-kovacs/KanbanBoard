@@ -31,10 +31,9 @@ import { TaskService } from './task.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="grid grid-cols-4 gap-4 m-4">
-      <!-- TODO: adjust classes or remove the 'list' class from each -->
+    <div class="flex flex-wrap gap-4 m-4">
       <app-task-group
-        class="list"
+        class="basis-full sm:basis-72 sm:flex-grow"
         data-status="todo"
         headerClass="bg-red-600 rounded-t"
         title="To Do"
@@ -48,7 +47,7 @@ import { TaskService } from './task.service';
         (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
       <app-task-group
-        class="list"
+        class="basis-full sm:basis-72 sm:flex-grow"
         data-status="doing"
         headerClass="bg-yellow-600 rounded-t"
         title="Implementing"
@@ -62,7 +61,7 @@ import { TaskService } from './task.service';
         (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
       <app-task-group
-        class="list"
+        class="basis-full sm:basis-72 sm:flex-grow"
         data-status="done"
         headerClass="bg-green-600 rounded-t"
         title="Done"
@@ -75,7 +74,10 @@ import { TaskService } from './task.service';
         (taskMoved)="taskMoved($event)"
         (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
-      <app-task-form (taskAdded)="taskService.addTask($event)"></app-task-form>
+      <app-task-form
+        class="basis-full sm:basis-72 sm:flex-grow 2xl:flex-grow-0"
+        (taskAdded)="taskService.addTask($event)"
+      ></app-task-form>
     </div>
   `,
   styles: ``,

@@ -17,7 +17,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- FIXME: remove annoying tooltip that appears on mouseover -->
-    <mat-card>
+    <mat-card class="h-full">
       <mat-card-header class="{{ headerClass() }}">
         <mat-card-title class="text-gray-50">{{ title() }}</mat-card-title>
       </mat-card-header>

@@ -30,7 +30,7 @@ import { Task } from '../../../task';
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <div class="flex justify-between w-full mx-1 mb-1">
+        <div class="flex flex-wrap gap-2 justify-between w-full mx-1 mb-1">
           <div class="flex gap-2">
             @if (task().status !== 'todo') {
             <button
