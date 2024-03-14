@@ -7,8 +7,12 @@ import { HeaderComponent } from './header/header.component';
   standalone: true,
   imports: [HeaderComponent, RouterOutlet],
   template: `
-    <app-header></app-header>
-    <router-outlet />
+    <header>
+      <app-header></app-header>
+    </header>
+    <main>
+      <router-outlet />
+    </main>
   `,
   styles: ``,
 })

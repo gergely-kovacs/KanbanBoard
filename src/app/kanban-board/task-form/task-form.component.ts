@@ -33,6 +33,7 @@ import { Task } from '../../task';
         <mat-card-content class="mt-4">
           <mat-form-field class="w-full">
             <input
+              data-testid="description-input"
               matInput
               placeholder="Description"
               formControlName="description"
@@ -40,7 +41,12 @@ import { Task } from '../../task';
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions class="!px-4 !pb-4">
-          <button mat-raised-button color="primary" type="submit">
+          <button
+            data-testid="create-button"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
             Create
           </button>
         </mat-card-actions>

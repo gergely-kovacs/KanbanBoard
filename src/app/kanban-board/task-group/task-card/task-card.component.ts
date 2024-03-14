@@ -34,6 +34,7 @@ import { Task } from '../../../task';
           <div class="flex gap-2">
             @if (task().status !== 'todo') {
             <button
+              [attr.data-testid]="'previous-button-' + task().id"
               class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
               mat-mini-fab
               aria-label="Move to previous status"
@@ -43,6 +44,7 @@ import { Task } from '../../../task';
             </button>
             } @if (task().status !== 'done') {
             <button
+              [attr.data-testid]="'next-button-' + task().id"
               class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
               mat-mini-fab
               aria-label="Move to next status"
@@ -53,6 +55,7 @@ import { Task } from '../../../task';
             }
           </div>
           <button
+            [attr.data-testid]="'delete-button-' + task().id"
             class="!rounded-md !shadow-md"
             mat-mini-fab
             color="warn"

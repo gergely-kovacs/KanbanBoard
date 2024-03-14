@@ -24,18 +24,25 @@ type ColorTheme = 'light' | 'dark';
   ],
   template: `
     <mat-toolbar color="primary">
-      <span>Kanban Board</span>
+      <h1>Kanban Board</h1>
 
-      <span class="flex-auto"></span>
-
-      <div class="flex items-center">
+      <div class="flex items-center ml-auto">
         <mat-icon class="mr-2 text-slate-300">dark_mode</mat-icon>
-        <mat-slide-toggle (toggleChange)="toggleTheme()"></mat-slide-toggle>
+        <mat-slide-toggle
+          data-testid="theme-toggle"
+          aria-label="Toggle dark mode"
+          (toggleChange)="toggleTheme()"
+        ></mat-slide-toggle>
         <mat-icon class="ml-2 text-amber-300">light_mode</mat-icon>
       </div>
     </mat-toolbar>
     @if (loadingService.isLoading()) {
-    <mat-progress-bar color="accent" mode="query"></mat-progress-bar>
+    <mat-progress-bar
+      data-testid="loading-indicator"
+      aria-label="Loading indicator"
+      color="accent"
+      mode="query"
+    ></mat-progress-bar>
     }
   `,
   styles: ``,

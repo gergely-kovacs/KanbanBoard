@@ -24,6 +24,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
       <mat-card-content class="!pb-0">
         @for (task of tasks(); track task.id) {
         <app-task-card
+          [attr.data-testid]="'task-card-' + task.id"
           class="cursor-move m-4"
           cdkDrag
           [cdkDragData]="task"

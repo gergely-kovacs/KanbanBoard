@@ -41,6 +41,7 @@
     "@angular-eslint/template-parser": "17.2.1",
     "@angular/cli": "^17.2.3",
     "@angular/compiler-cli": "^17.2.0",
+    "@axe-core/playwright": "^4.8.5",
     "@playwright/test": "^1.42.1",
     "@types/jasmine": "~5.1.0",
     "@types/lodash": "^4.17.0",

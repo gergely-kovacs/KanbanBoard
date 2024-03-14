@@ -35,7 +35,7 @@ import { TaskService } from './task.service';
       <app-task-group
         class="basis-full sm:basis-72 sm:flex-grow"
         data-status="todo"
-        headerClass="bg-red-600 rounded-t"
+        headerClass="bg-red-700 rounded-t"
         title="To Do"
         cdkDropList
         #todoList="cdkDropList"
@@ -49,7 +49,7 @@ import { TaskService } from './task.service';
       <app-task-group
         class="basis-full sm:basis-72 sm:flex-grow"
         data-status="doing"
-        headerClass="bg-yellow-600 rounded-t"
+        headerClass="bg-yellow-700 rounded-t"
         title="Implementing"
         cdkDropList
         #doingList="cdkDropList"
@@ -63,7 +63,7 @@ import { TaskService } from './task.service';
       <app-task-group
         class="basis-full sm:basis-72 sm:flex-grow"
         data-status="done"
-        headerClass="bg-green-600 rounded-t"
+        headerClass="bg-green-700 rounded-t"
         title="Done"
         cdkDropList
         #doneList="cdkDropList"
