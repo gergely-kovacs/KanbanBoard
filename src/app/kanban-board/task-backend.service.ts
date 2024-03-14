@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { nanoid } from 'nanoid';
+import { z } from 'zod';
 import { LoadingService } from '../loading.service';
 import { Task } from '../task';
-import { z } from 'zod';
 
 const taskSchema = z.object({
   id: z.string(),
@@ -110,6 +110,22 @@ export class TaskBackendService {
       setTimeout(() => {
         try {
           resolve(taskSchema.parse(task));
+        } catch (error) {
+          reject(error);
+        } finally {
+          this.loadingService.hide();
+        }
+      }, this.MOCK_SERVER_RESONPOSE_TIME_MS);
+    });
+  }
+
+  deleteTask(task: Task): Promise<string | undefined> {
+    return new Promise((resolve, reject) => {
+      this.loadingService.show();
+
+      setTimeout(() => {
+        try {
+          resolve(task.id);
         } catch (error) {
           reject(error);
         } finally {

@@ -57,6 +57,7 @@ import { Task } from '../../../task';
             mat-mini-fab
             color="warn"
             aria-label="Delete task"
+            (click)="deleteTask()"
           >
             <mat-icon>delete</mat-icon>
           </button>
@@ -70,6 +71,7 @@ export class TaskCardComponent {
   task = input.required<Task>();
 
   @Output() taskMoved = new EventEmitter<Task>();
+  @Output() taskDeleted = new EventEmitter<Task>();
 
   moveTask(direction: 'previous' | 'next') {
     const currentTask = this.task();
@@ -91,5 +93,9 @@ export class TaskCardComponent {
       default:
         throw new Error(`Invalid direction: ${direction}`);
     }
+  }
+
+  deleteTask() {
+    this.taskDeleted.emit(this.task());
   }
 }

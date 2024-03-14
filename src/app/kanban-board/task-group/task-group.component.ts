@@ -29,6 +29,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
           [cdkDragData]="task"
           [task]="task"
           (taskMoved)="moveTask($event)"
+          (taskDeleted)="deleteTask($event)"
         ></app-task-card>
         }
       </mat-card-content>
@@ -42,8 +43,13 @@ export class TaskGroupComponent {
   tasks = input.required<Task[]>();
 
   @Output() taskMoved = new EventEmitter<Task>();
+  @Output() taskDeleted = new EventEmitter<Task>();
 
   moveTask(task: Task) {
     this.taskMoved.emit(task);
+  }
+
+  deleteTask(task: Task) {
+    this.taskDeleted.emit(task);
   }
 }

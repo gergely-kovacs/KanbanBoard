@@ -48,13 +48,30 @@ export class TaskService {
     try {
       const updatedTask = await this.taskBackendService.updateTask(task);
       this.tasks.update((tasks) =>
-        tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+        tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
       );
       return updatedTask;
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
         message || 'Failed to update task'
+      );
+      return;
+    }
+  }
+
+  async deleteTask(task: Task): Promise<string | undefined> {
+    try {
+      const deletedTaskId = await this.taskBackendService.deleteTask(task);
+      this.tasks.update((tasks) => tasks.filter((t) => t.id !== deletedTaskId));
+      this.notificationService.showSuccessNotification(
+        'Task deleted successfully'
+      );
+      return deletedTaskId;
+    } catch (error) {
+      const message = (error as Error).message;
+      this.notificationService.showErrorNotification(
+        message || 'Failed to delete task'
       );
       return;
     }

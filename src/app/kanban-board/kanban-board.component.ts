@@ -11,18 +11,24 @@ import {
   Signal,
   computed,
   inject,
-  signal,
 } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { isBoolean, isNil } from 'lodash';
 import { Task } from '../task';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TaskGroupComponent } from './task-group/task-group.component';
 import { TaskService } from './task.service';
-import { isNil } from 'lodash';
 
 @Component({
   selector: 'app-kanban-board',
   standalone: true,
-  imports: [CdkDropList, TaskGroupComponent, TaskFormComponent],
+  imports: [
+    CdkDropList,
+    MatDialogModule,
+    TaskGroupComponent,
+    TaskFormComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="grid grid-cols-4 gap-4 m-4">
@@ -39,6 +45,7 @@ import { isNil } from 'lodash';
         [cdkDropListConnectedTo]="[doingList, doneList]"
         (cdkDropListDropped)="drop($event)"
         (taskMoved)="taskMoved($event)"
+        (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
       <app-task-group
         class="list"
@@ -52,6 +59,7 @@ import { isNil } from 'lodash';
         [cdkDropListConnectedTo]="[todoList, doneList]"
         (cdkDropListDropped)="drop($event)"
         (taskMoved)="taskMoved($event)"
+        (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
       <app-task-group
         class="list"
@@ -65,6 +73,7 @@ import { isNil } from 'lodash';
         [cdkDropListConnectedTo]="[todoList, doingList]"
         (cdkDropListDropped)="drop($event)"
         (taskMoved)="taskMoved($event)"
+        (taskDeleted)="taskDeleted($event)"
       ></app-task-group>
       <app-task-form (taskAdded)="taskService.addTask($event)"></app-task-form>
     </div>
@@ -72,6 +81,7 @@ import { isNil } from 'lodash';
   styles: ``,
 })
 export class KanbanBoardComponent implements OnInit {
+  private readonly dialog = inject(MatDialog);
   readonly taskService = inject(TaskService);
 
   todo = computed(() => {
@@ -105,6 +115,7 @@ export class KanbanBoardComponent implements OnInit {
       event.currentIndex
     );
 
+    // FIXME: treat the dataset as unknown, make sure it errors on wrong values
     const task: Task = {
       ...event.item.data,
       status: event.container.element.nativeElement.dataset['status'] as
@@ -126,5 +137,27 @@ export class KanbanBoardComponent implements OnInit {
 
   taskMoved(task: Task) {
     this.taskService.updateTask(task);
+  }
+
+  taskDeleted(task: Task) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        task,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((isConfirmed: unknown) => {
+      if (isNil(isConfirmed)) {
+        return;
+      }
+
+      if (!isBoolean(isConfirmed)) {
+        throw new Error("Expected 'isConfirmed' to be a boolean");
+      }
+
+      if (isConfirmed) {
+        this.taskService.deleteTask(task);
+      }
+    });
   }
 }
