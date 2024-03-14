@@ -51,12 +51,12 @@ export class ConfirmationDialogComponent {
     }
     if (!isObject(this.data) || !('task' in this.data)) {
       throw new Error(
-        'The data provided to the confirmation dialogue has incorrect structure'
+        'The data provided to the confirmation dialogue has incorrect structure',
       );
     }
     if (!isInstanceOfTask(this.data.task)) {
       throw new Error(
-        'The task passed to the confirmation dialogue is not an instance of Task'
+        'The task passed to the confirmation dialogue is not an instance of Task',
       );
     }
     this.task = this.data.task;

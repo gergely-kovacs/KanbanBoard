@@ -51,7 +51,7 @@ test('should delete task by clicking delete button', async ({ page }) => {
 
   await page.getByTestId('delete-button-1').click();
   await expect(
-    page.getByRole('heading', { name: 'Delete task' })
+    page.getByRole('heading', { name: 'Delete task' }),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Ok' }).click();
 
@@ -66,10 +66,10 @@ test('should move task from todo to doing', async ({ page }) => {
   await page.getByTestId('next-button-1').click();
 
   await expect(
-    page.locator('[data-status=doing]').getByText('Get to work')
+    page.locator('[data-status=doing]').getByText('Get to work'),
   ).toBeVisible();
   await expect(
-    page.locator('[data-status=todo]').getByText('Get to work')
+    page.locator('[data-status=todo]').getByText('Get to work'),
   ).not.toBeVisible();
 });
 
@@ -80,10 +80,10 @@ test('should move task from doing to done', async ({ page }) => {
   await page.getByTestId('next-button-5').click();
 
   await expect(
-    page.locator('[data-status=done]').getByText('Get up')
+    page.locator('[data-status=done]').getByText('Get up'),
   ).toBeVisible();
   await expect(
-    page.locator('[data-status=doing]').getByText('Get up')
+    page.locator('[data-status=doing]').getByText('Get up'),
   ).not.toBeVisible();
 });
 
@@ -94,10 +94,10 @@ test('should move task from done to doing', async ({ page }) => {
   await page.getByTestId('previous-button-9').click();
 
   await expect(
-    page.locator('[data-status=doing]').getByText('Walk dog')
+    page.locator('[data-status=doing]').getByText('Walk dog'),
   ).toBeVisible();
   await expect(
-    page.locator('[data-status=done]').getByText('Walk dog')
+    page.locator('[data-status=done]').getByText('Walk dog'),
   ).not.toBeVisible();
 });
 
@@ -108,10 +108,10 @@ test('should move task from doing to todo', async ({ page }) => {
   await page.getByTestId('previous-button-5').click();
 
   await expect(
-    page.locator('[data-status=todo]').getByText('Get up')
+    page.locator('[data-status=todo]').getByText('Get up'),
   ).toBeVisible();
   await expect(
-    page.locator('[data-status=doing]').getByText('Get up')
+    page.locator('[data-status=doing]').getByText('Get up'),
   ).not.toBeVisible();
 });
 
@@ -132,7 +132,7 @@ test('should drag and drop task from todo to done', async ({ page }) => {
   await expect(page.getByTestId('loading-indicator')).not.toBeVisible();
   await expect(doneTaskGroup.getByText('Get to work')).toBeVisible();
   await expect(
-    page.locator('[data-status=todo]').getByText('Get to work')
+    page.locator('[data-status=todo]').getByText('Get to work'),
   ).not.toBeVisible();
 });
 

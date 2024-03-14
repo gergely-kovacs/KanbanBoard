@@ -33,25 +33,26 @@ import { Task } from '../../../task';
         <div class="flex flex-wrap gap-2 justify-between w-full mx-1 mb-1">
           <div class="flex gap-2">
             @if (task().status !== 'todo') {
-            <button
-              [attr.data-testid]="'previous-button-' + task().id"
-              class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
-              mat-mini-fab
-              aria-label="Move to previous status"
-              (click)="moveTask('previous')"
-            >
-              <mat-icon class="!text-gray-900">arrow_left</mat-icon>
-            </button>
-            } @if (task().status !== 'done') {
-            <button
-              [attr.data-testid]="'next-button-' + task().id"
-              class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
-              mat-mini-fab
-              aria-label="Move to next status"
-              (click)="moveTask('next')"
-            >
-              <mat-icon class="!text-gray-900">arrow_right</mat-icon>
-            </button>
+              <button
+                [attr.data-testid]="'previous-button-' + task().id"
+                class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
+                mat-mini-fab
+                aria-label="Move to previous status"
+                (click)="moveTask('previous')"
+              >
+                <mat-icon class="!text-gray-900">arrow_left</mat-icon>
+              </button>
+            }
+            @if (task().status !== 'done') {
+              <button
+                [attr.data-testid]="'next-button-' + task().id"
+                class="!rounded-md !shadow-md !bg-neutral-400 dark:!bg-neutral-200"
+                mat-mini-fab
+                aria-label="Move to next status"
+                (click)="moveTask('next')"
+              >
+                <mat-icon class="!text-gray-900">arrow_right</mat-icon>
+              </button>
             }
           </div>
           <button

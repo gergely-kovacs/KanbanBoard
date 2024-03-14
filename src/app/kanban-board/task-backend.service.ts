@@ -92,7 +92,7 @@ export class TaskBackendService {
             taskSchema.parse({
               id: nanoid(),
               ...task,
-            })
+            }),
           );
         } catch (error) {
           reject(error);

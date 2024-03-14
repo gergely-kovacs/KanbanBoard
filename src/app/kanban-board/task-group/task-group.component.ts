@@ -23,15 +23,15 @@ import { TaskCardComponent } from './task-card/task-card.component';
       </mat-card-header>
       <mat-card-content class="!pb-0">
         @for (task of tasks(); track task.id) {
-        <app-task-card
-          [attr.data-testid]="'task-card-' + task.id"
-          class="cursor-move m-4"
-          cdkDrag
-          [cdkDragData]="task"
-          [task]="task"
-          (taskMoved)="moveTask($event)"
-          (taskDeleted)="deleteTask($event)"
-        ></app-task-card>
+          <app-task-card
+            [attr.data-testid]="'task-card-' + task.id"
+            class="cursor-move m-4"
+            cdkDrag
+            [cdkDragData]="task"
+            [task]="task"
+            (taskMoved)="moveTask($event)"
+            (taskDeleted)="deleteTask($event)"
+          ></app-task-card>
         }
       </mat-card-content>
     </mat-card>

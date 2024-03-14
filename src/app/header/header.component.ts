@@ -37,12 +37,12 @@ type ColorTheme = 'light' | 'dark';
       </div>
     </mat-toolbar>
     @if (loadingService.isLoading()) {
-    <mat-progress-bar
-      data-testid="loading-indicator"
-      aria-label="Loading indicator"
-      color="accent"
-      mode="query"
-    ></mat-progress-bar>
+      <mat-progress-bar
+        data-testid="loading-indicator"
+        aria-label="Loading indicator"
+        color="accent"
+        mode="query"
+      ></mat-progress-bar>
     }
   `,
   styles: ``,

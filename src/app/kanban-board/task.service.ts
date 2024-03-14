@@ -20,7 +20,7 @@ export class TaskService {
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
-        message || 'Failed to load tasks'
+        message || 'Failed to load tasks',
       );
       return;
     }
@@ -31,13 +31,13 @@ export class TaskService {
       const newTask = await this.taskBackendService.createTask(task);
       this.tasks.update((tasks) => [...tasks, newTask]);
       this.notificationService.showSuccessNotification(
-        'Task added successfully'
+        'Task added successfully',
       );
       return newTask;
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
-        message || 'Failed to add task'
+        message || 'Failed to add task',
       );
       return;
     }
@@ -48,13 +48,13 @@ export class TaskService {
     try {
       const updatedTask = await this.taskBackendService.updateTask(task);
       this.tasks.update((tasks) =>
-        tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
+        tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t)),
       );
       return updatedTask;
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
-        message || 'Failed to update task'
+        message || 'Failed to update task',
       );
       return;
     }
@@ -65,13 +65,13 @@ export class TaskService {
       const deletedTaskId = await this.taskBackendService.deleteTask(task);
       this.tasks.update((tasks) => tasks.filter((t) => t.id !== deletedTaskId));
       this.notificationService.showSuccessNotification(
-        'Task deleted successfully'
+        'Task deleted successfully',
       );
       return deletedTaskId;
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
-        message || 'Failed to delete task'
+        message || 'Failed to delete task',
       );
       return;
     }

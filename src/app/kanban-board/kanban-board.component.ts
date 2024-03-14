@@ -104,11 +104,11 @@ export class KanbanBoardComponent implements OnInit {
     if (
       isNil(event.container.element.nativeElement.dataset['status']) ||
       !['todo', 'doing', 'done'].includes(
-        event.container.element.nativeElement.dataset['status']
+        event.container.element.nativeElement.dataset['status'],
       )
     ) {
       throw new Error(
-        "The task group needs to have a 'data-status' attribute, and it must be one of 'todo', 'doing' or 'done'"
+        "The task group needs to have a 'data-status' attribute, and it must be one of 'todo', 'doing' or 'done'",
       );
     }
 
@@ -116,7 +116,7 @@ export class KanbanBoardComponent implements OnInit {
       moveItemInArray(
         event.container.data(),
         event.previousIndex,
-        event.currentIndex
+        event.currentIndex,
       );
       return;
     }
@@ -125,7 +125,7 @@ export class KanbanBoardComponent implements OnInit {
       event.previousContainer.data(),
       event.container.data(),
       event.previousIndex,
-      event.currentIndex
+      event.currentIndex,
     );
 
     const task: Task = {
@@ -139,7 +139,7 @@ export class KanbanBoardComponent implements OnInit {
         event.container.data(),
         event.previousContainer.data(),
         event.currentIndex,
-        event.previousIndex
+        event.previousIndex,
       );
     }
   }
