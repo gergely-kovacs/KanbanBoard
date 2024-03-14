@@ -19,6 +19,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
         <app-task-card
           class="cursor-move m-4"
           cdkDrag
+          [cdkDragData]="task"
           [task]="task"
         ></app-task-card>
         }

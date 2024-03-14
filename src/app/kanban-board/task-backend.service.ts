@@ -102,4 +102,20 @@ export class TaskBackendService {
       }, this.MOCK_SERVER_RESONPOSE_TIME_MS);
     });
   }
+
+  updateTask(task: Task): Promise<Task> {
+    return new Promise((resolve, reject) => {
+      this.loadingService.show();
+
+      setTimeout(() => {
+        try {
+          resolve(taskSchema.parse(task));
+        } catch (error) {
+          reject(error);
+        } finally {
+          this.loadingService.hide();
+        }
+      }, this.MOCK_SERVER_RESONPOSE_TIME_MS);
+    });
+  }
 }
