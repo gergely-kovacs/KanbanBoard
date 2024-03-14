@@ -14,9 +14,9 @@ export class TaskService {
 
   async loadTasks(): Promise<Task[] | undefined> {
     try {
-      const tasks = await this.taskBackendService.fetchTasks();
-      this.tasks.set(tasks);
-      return tasks;
+      const persistedTasks = await this.taskBackendService.fetchTasks();
+      this.tasks.update((localTasks) => [...localTasks, ...persistedTasks]);
+      return persistedTasks;
     } catch (error) {
       const message = (error as Error).message;
       this.notificationService.showErrorNotification(
