@@ -12,6 +12,7 @@ export function isInstanceOfTask(obj: unknown): obj is Task {
     isObject(obj) &&
     'id' in obj &&
     'description' in obj &&
-    'status' in obj
+    'status' in obj &&
+    ['todo', 'doing', 'done'].includes(obj['status'] as string)
   );
 }
